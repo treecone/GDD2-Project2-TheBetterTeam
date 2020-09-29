@@ -34,7 +34,7 @@ public class MoveableObject : MonoBehaviour
         }
     }
 
-    public bool CheckCollision (Vector2 dir)
+    bool CheckCollision (Vector2 dir)
     {
         Debug.DrawRay((Vector2)transform.position + (dir * 1.05f), dir * 0.45f, Color.red);
         RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + dir*1.05f, dir, 0.45f);

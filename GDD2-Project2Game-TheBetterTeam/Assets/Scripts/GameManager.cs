@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     {
         foreach(GameObject obj in moveableObjects)
         {
+            //if(obj.tag == "Player") { return; }
+
             //Gravity
             obj.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
         }
