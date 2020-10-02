@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     private MoveableObject mObject;
     private GameManager GM;
+    private bool jumped;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,23 +19,38 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Input
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && jumped == false)
         {
-
+            GM.ForwardTime();
+            mObject.ApplyTime(Vector2.up);
+            jumped = true;
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             GM.ForwardTime();
             mObject.ApplyTime(Vector2.left);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-
+            jumped = false;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             GM.ForwardTime();
             mObject.ApplyTime(Vector2.right);
+            jumped = false;
+        }
+
+        //Player Gravity
+        if (!jumped)
+        {
+            PlayerGravity();
+        }
+    }
+
+    void PlayerGravity()
+    {
+        if (!mObject.checkDirection(Vector2.down))
+        {
+            GM.ForwardTime();
+            mObject.ApplyTime(Vector2.down);
         }
     }
 }

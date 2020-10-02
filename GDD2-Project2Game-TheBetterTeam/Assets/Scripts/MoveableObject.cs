@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MoveableObject : MonoBehaviour
 {
+    public bool inMovement;
+    private Tilemap mainTilemap;
+    private GridLayout mainGridLayout;
+
     void Start()
     {
-        
+        inMovement = false;
+        mainGridLayout = GameObject.Find("Grid").GetComponent<Grid>();
+        mainTilemap = GameObject.Find("Grid").transform.GetChild(0).GetComponent<Tilemap>();
+
     }
 
+    //Actual script that lerps the object from position to the direction
     IEnumerator Move (Vector2 direction, float deltaTime)
     {
+        inMovement = true;
         Vector2 endPosition = (Vector2)transform.position + direction;
         float newTime = Time.time;
         while (Time.time < newTime + deltaTime)
@@ -19,29 +29,41 @@ public class MoveableObject : MonoBehaviour
             yield return null;
         }
         transform.position = endPosition;
+        inMovement = false;
     }
 
+    //Void to be called everytime time is moved forward. Game Manager Calls this.
     public void ApplyTime (Vector2 direction)
     {
-
         //Movement
-        if(direction != Vector2.zero)
+        if(direction != Vector2.zero && !inMovement)
         {
-            if(!CheckCollision(direction))
+            if(!checkDirection(direction))
             {
-                StartCoroutine(Move(direction, 0.1f));
+                StartCoroutine(Move(direction, 0.2f));
             }
         }
     }
 
-    bool CheckCollision (Vector2 dir)
+    public bool CheckBlock (Vector2 position)
     {
-        Debug.DrawRay((Vector2)transform.position + (dir * 1.05f), dir * 0.45f, Color.red);
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + dir*1.05f, dir, 0.45f);
-        if (hit.collider != null)
+        Vector3Int convertedPos = new Vector3Int((int)position.x, (int)position.y, (int)mainTilemap.transform.position.z);
+        if (mainTilemap.HasTile(convertedPos)) { return true; }
+        return false;
+    }
+
+    //Returns true if there is a tile at the tilePos
+    public bool checkDirection (Vector2 direction)
+    {
+        //Gets the objects position in cell space
+        Vector3Int objPos = mainGridLayout.WorldToCell(gameObject.transform.position);
+        //Adds the direction vector
+        Vector3Int blockLocation = new Vector3Int(objPos.x + (int)direction.x, objPos.y + (int)direction.y, 0);
+        if (mainTilemap.HasTile(blockLocation))
         {
             return true;
         }
         return false;
     }
+
 }
