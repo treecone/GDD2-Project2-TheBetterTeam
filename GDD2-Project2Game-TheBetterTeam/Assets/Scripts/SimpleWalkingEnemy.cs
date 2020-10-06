@@ -7,8 +7,13 @@ public class SimpleWalkingEnemy : Enemy
     [SerializeField]
     private EnemyDirection enemyDirection;
 
+    // Does this enemy not walk on ledges?
     [SerializeField]
-    private bool avoidLedges = true;
+    private bool isLedgeAvoidant = true;
+
+    // Is this enemy stuck walking on the ground?
+    [SerializeField]
+    private bool isGrounded = true;
 
     private Vector2 enemyDirectionVector;
 
@@ -21,11 +26,14 @@ public class SimpleWalkingEnemy : Enemy
 
     public override void ApplyTime(Vector2 direction)
     {
-        // Gravity
-        ApplyDirection(Vector2.down);
+        // Apply gravity if this enemy is grounded
+        if (isGrounded)
+        {
+            ApplyDirection(Vector2.down);
+        }
 
-        // Avoids walking off a ledge, if enabled
-        if (avoidLedges)
+        // Avoids walking off of ledges if enabled
+        if (isGrounded && isLedgeAvoidant)
         {
             if (IsOnLedge())
             {
@@ -33,7 +41,7 @@ public class SimpleWalkingEnemy : Enemy
             }
         }
 
-        // If solid, avoid walls
+        // If this enemy is solid, turn around at walls
         if (isSolid)
         {
             if (IsAtWall())

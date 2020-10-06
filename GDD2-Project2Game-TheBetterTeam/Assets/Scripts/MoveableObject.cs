@@ -45,7 +45,11 @@ public class MoveableObject : MonoBehaviour
         //Movement
         if (direction != Vector2.zero && !inMovement)
         {
-            if (!checkDirection(direction))
+            if (!isSolid)
+            {
+                StartCoroutine(Move(direction, 0.2f));
+            }
+            else if (!checkDirection(direction))
             {
                 StartCoroutine(Move(direction, 0.2f));
             }
