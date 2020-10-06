@@ -40,4 +40,12 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void AddMoveableObject(GameObject newObject)
+    {
+        if (moveableObjects != null && newObject.GetComponent<MoveableObject>() != null)
+        {
+            moveableObjects.Add(newObject);
+        }
+    }
 }

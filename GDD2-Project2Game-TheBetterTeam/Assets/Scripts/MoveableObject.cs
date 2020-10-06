@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class MoveableObject : MonoBehaviour
 {
     public bool inMovement;
+    public bool isSolid = true;
     private Tilemap mainTilemap;
     private GridLayout mainGridLayout;
 
