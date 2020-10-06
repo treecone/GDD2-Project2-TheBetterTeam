@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3929581177312314179}
   - component: {fileID: 3929581177312314178}
-  - component: {fileID: -8807020739904470052}
+  - component: {fileID: 6344369618701562945}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: MoveableObject
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3929581177312314176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f0c0d673be22693418de1dafa2370510, type: 3}
-  m_Color: {r: 0.69411767, g: 0.7649251, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.045656204, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8807020739904470052
+--- !u!114 &6344369618701562945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,8 +92,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3929581177312314176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9aa02453dbd1a74c9f18921932c2747, type: 3}
+  m_Script: {fileID: 11500000, guid: 2631823ac5444e8459890a0a500d708a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inMovement: 0
   isSolid: 1
+  enemyDirection: 1
+  avoidLedges: 1

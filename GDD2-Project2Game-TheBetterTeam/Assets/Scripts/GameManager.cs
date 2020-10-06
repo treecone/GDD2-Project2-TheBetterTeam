@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        moveableObjects = new List<GameObject>(); // Otherwise there's a warning -_-
         GameObject[] allObj = FindObjectsOfType<GameObject>();
         foreach(GameObject moveObj in allObj)
         {

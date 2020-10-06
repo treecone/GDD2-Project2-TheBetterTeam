@@ -10,7 +10,7 @@ public class MoveableObject : MonoBehaviour
     private Tilemap mainTilemap;
     private GridLayout mainGridLayout;
 
-    void Start()
+    protected virtual void Start()
     {
         inMovement = false;
         mainGridLayout = GameObject.Find("Grid").GetComponent<Grid>();
@@ -34,19 +34,25 @@ public class MoveableObject : MonoBehaviour
     }
 
     //Void to be called everytime time is moved forward. Game Manager Calls this.
-    public void ApplyTime (Vector2 direction)
+    // Child classes may reimplement to apply time in their own way.
+    public virtual void ApplyTime (Vector2 direction)
+    {
+        ApplyDirection(direction);
+    }
+
+    public void ApplyDirection (Vector2 direction)
     {
         //Movement
-        if(direction != Vector2.zero && !inMovement)
+        if (direction != Vector2.zero && !inMovement)
         {
-            if(!checkDirection(direction))
+            if (!checkDirection(direction))
             {
                 StartCoroutine(Move(direction, 0.2f));
             }
         }
     }
 
-    public bool CheckBlock (Vector2 position)
+    public bool CheckTilePosition (Vector2 position)
     {
         Vector3Int convertedPos = new Vector3Int((int)position.x, (int)position.y, (int)mainTilemap.transform.position.z);
         if (mainTilemap.HasTile(convertedPos)) { return true; }
