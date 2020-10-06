@@ -40,6 +40,28 @@ public class GameManager : MonoBehaviour
                 obj.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
             }
         }
+        //update phase blocks
+        foreach (GameObject obj in FindObjectsOfType<GameObject>())
+        {
+            if (obj.GetComponent<PhaseBlock>() != null)
+            {
+                obj.GetComponent<PhaseBlock>().PhaseCount++;
+                if (obj.GetComponent<PhaseBlock>().PhaseCount < 3)
+                {
+                    obj.GetComponent<SpriteRenderer>().color = Color.gray;
+                }
+                else if (obj.GetComponent<PhaseBlock>().PhaseCount >= 4)
+                {
+                    obj.GetComponent<SpriteRenderer>().color = Color.black;
+                    obj.GetComponent<PhaseBlock>().PhaseCount = 0;
+                }
+                else
+                {
+                    obj.GetComponent<SpriteRenderer>().color = Color.black;
+                }
+
+            }
+        }
     }
 
     public void AddMoveableObject(GameObject newObject)

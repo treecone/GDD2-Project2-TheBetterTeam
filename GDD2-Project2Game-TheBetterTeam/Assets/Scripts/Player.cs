@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    public GameObject FocusedObject;
     private MoveableObject mObject;
     private GameManager GM;
     private bool jumped;
@@ -24,24 +25,44 @@ public class Player : MonoBehaviour
             GM.ForwardTime();
             mObject.ApplyTime(Vector2.up);
             jumped = true;
+            //move focused object
+            if (FocusedObject != null)
+            {
+                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.up);
+            }
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             GM.ForwardTime();
             mObject.ApplyTime(Vector2.left);
             jumped = false;
+            //move focused object
+            if (FocusedObject != null)
+            {
+                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.left);
+            }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             GM.ForwardTime();
             mObject.ApplyTime(Vector2.right);
             jumped = false;
+            //move focused object
+            if (FocusedObject != null)
+            {
+                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.right);
+            }
         }
 
         //Player Gravity
         if (!jumped)
         {
             PlayerGravity();
+            //move focused object
+            if (FocusedObject != null)
+            {
+                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
+            }
         }
     }
 
