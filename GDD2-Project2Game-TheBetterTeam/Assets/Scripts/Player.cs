@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
 
     public GameObject FocusedObject;
+    private bool focusedJumped;
+
     private MoveableObject mObject;
     private GameManager GM;
     private bool jumped;
@@ -20,48 +22,88 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Input
-        if (Input.GetKeyDown(KeyCode.W) && jumped == false)
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            GM.ForwardTime();
-            mObject.ApplyTime(Vector2.up);
-            jumped = true;
-            //move focused object
-            if (FocusedObject != null)
+            if (FocusedObject == null)
             {
-                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.up);
+                if (jumped == false)
+                {
+                    GM.ForwardTime();
+                    mObject.ApplyTime(Vector2.up);
+                    jumped = true;
+                }
+            }
+            else
+            {
+                if (focusedJumped == false)
+                {
+                    GM.ForwardTime();
+                    //move focused object
+                    FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.up);
+                    focusedJumped = true;
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             GM.ForwardTime();
-            mObject.ApplyTime(Vector2.left);
-            jumped = false;
-            //move focused object
-            if (FocusedObject != null)
+            if (FocusedObject == null)
             {
+                mObject.ApplyTime(Vector2.left);
+                jumped = false;
+            }
+            else
+            {
+                //move focused object
                 FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.left);
+                focusedJumped = false;
             }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             GM.ForwardTime();
-            mObject.ApplyTime(Vector2.right);
-            jumped = false;
-            //move focused object
-            if (FocusedObject != null)
+            if (FocusedObject == null)
             {
+                mObject.ApplyTime(Vector2.right);
+                jumped = false;
+            }
+            else
+            {
+                //move focused object
                 FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.right);
+                focusedJumped = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            GM.ForwardTime();
+            if (FocusedObject == null)
+            {
+                mObject.ApplyTime(Vector2.down);
+                jumped = false;
+            }
+            else
+            {
+                //move focused object
+                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
+                focusedJumped = false;
             }
         }
 
-        //Player Gravity
-        if (!jumped)
+        if (FocusedObject == null)
         {
-            PlayerGravity();
-            //move focused object
-            if (FocusedObject != null)
+            //Player Gravity
+            if (!jumped)
             {
-                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
+                PlayerGravity();
+            }
+        }
+        else
+        {
+            //Focused Object Gravity
+            if (!focusedJumped)
+            {
+                FocusedObjectGravity();
             }
         }
     }
@@ -72,6 +114,27 @@ public class Player : MonoBehaviour
         {
             GM.ForwardTime();
             mObject.ApplyTime(Vector2.down);
+        }
+    }
+
+    void FocusedObjectGravity()
+    {
+        if (!FocusedObject.GetComponent<MoveableObject>().checkDirection(Vector2.down))
+        {
+            GM.ForwardTime();
+            FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
+        }
+    }
+
+    public void ResetJumps()
+    {
+        if(FocusedObject == null)
+        {
+            focusedJumped = false;
+        }
+        else
+        {
+            jumped = false;
         }
     }
 }

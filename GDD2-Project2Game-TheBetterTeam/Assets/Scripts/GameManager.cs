@@ -32,12 +32,18 @@ public class GameManager : MonoBehaviour
 
     public void ForwardTime ()
     {
-        foreach(GameObject obj in moveableObjects)
+        GameObject playerFocus = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().FocusedObject;
+        foreach (GameObject obj in moveableObjects)
         {
-            if(obj.tag != "Player") 
+            if(obj.tag != "Player" || (obj.tag == "Player" && playerFocus != null)) 
             {
-                //Gravity
-                obj.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
+                if (playerFocus != obj)
+                {
+                    //Gravity
+                    obj.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
+                    //Set jumped to false so that object can jump when switching back
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().ResetJumps();
+                }
             }
         }
         //update phase blocks
