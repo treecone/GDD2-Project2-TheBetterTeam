@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     private MoveableObject mObject;
     private GameManager GM;
     private bool jumped;
+    private BoxCollider2D playerCollider;
 
     private float playerSpriteHeight;
 
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
         mObject = gameObject.GetComponent<MoveableObject>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerSpriteHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents.y;
+        playerCollider = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -124,6 +127,16 @@ public class Player : MonoBehaviour
         // Fell off screen - uses sprite height so the death happens after the player is off-screen
         if (gameObject.transform.position.y < 0 - playerSpriteHeight)
         {
+            return true;
+        }
+
+        // Handles enemy collisions I think?
+        List<Collider2D> collisions = new List<Collider2D>();
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        contactFilter.useTriggers = true;
+        if (playerCollider.OverlapCollider(contactFilter, collisions) > 0)
+        {
+            Debug.Log("Size: " + collisions.Count());
             return true;
         }
 
