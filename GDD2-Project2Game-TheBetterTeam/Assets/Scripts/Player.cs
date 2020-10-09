@@ -11,11 +11,15 @@ public class Player : MonoBehaviour
     private MoveableObject mObject;
     private GameManager GM;
     private bool jumped;
+
+    private float playerSpriteHeight;
+
     // Start is called before the first frame update
     void Start()
     {
         mObject = gameObject.GetComponent<MoveableObject>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerSpriteHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents.y;
     }
 
     // Update is called once per frame
@@ -106,6 +110,24 @@ public class Player : MonoBehaviour
                 FocusedObjectGravity();
             }
         }
+
+        // Handles player death if applicable
+        if (CheckForDeath())
+        {
+            Debug.Log("Player has died!");
+        }
+    }
+
+    // Checks if the player did something to die
+    private bool CheckForDeath()
+    {
+        // Fell off screen - uses sprite height so the death happens after the player is off-screen
+        if (gameObject.transform.position.y < 0 - playerSpriteHeight)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     void PlayerGravity()
