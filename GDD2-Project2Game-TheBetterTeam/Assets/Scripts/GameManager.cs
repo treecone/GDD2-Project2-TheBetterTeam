@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> moveableObjects;
+    [SerializeField]
+    private int numberOfShards;
+    [SerializeField]
+    private int[] shardsPerLevel;
 
     void Start()
     {
@@ -27,6 +33,11 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             ForwardTime();
+        }
+        //Prob move this to when a player picks up a shard so we dont have to call it every frame
+        if (numberOfShards >= shardsPerLevel[SceneManager.GetActiveScene().buildIndex])
+        {
+            GameObject.FindWithTag("Settings").GetComponent<Settings>().NextLevel();
         }
     }
 
