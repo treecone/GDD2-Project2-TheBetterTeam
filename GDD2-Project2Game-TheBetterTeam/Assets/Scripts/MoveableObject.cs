@@ -63,6 +63,29 @@ public class MoveableObject : MonoBehaviour
         return false;
     }
 
+    // Entities are not tiles, and therefor need their own method to dheck where they are
+    public bool CheckEntityPosition (Vector2 direction)
+    {
+        // Do a raycast
+        RaycastHit2D raycastResult = Physics2D.Raycast(transform.position, direction, 1.0f);
+        // If something is found
+        if (raycastResult.transform != null)
+        {
+            // Check if it is an entity tile, that's all we are concerned with
+            EntityTile entityTile = raycastResult.transform.gameObject.GetComponent<EntityTile>();
+            if (entityTile != null)
+            {
+                // Here is where we should do "passable" checks.
+                // isSolid is used for phase blocks
+                if (entityTile.isSolid)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     //Returns true if there is a tile at the tilePos
     public bool checkDirection (Vector2 direction)
     {
@@ -71,6 +94,10 @@ public class MoveableObject : MonoBehaviour
         //Adds the direction vector
         Vector3Int blockLocation = new Vector3Int(objPos.x + (int)direction.x, objPos.y + (int)direction.y, 0);
         if (mainTilemap.HasTile(blockLocation))
+        {
+            return true;
+        }
+        else if (CheckEntityPosition(direction))
         {
             return true;
         }

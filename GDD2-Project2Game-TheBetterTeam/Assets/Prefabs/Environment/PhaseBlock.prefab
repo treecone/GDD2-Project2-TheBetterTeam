@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4691962264058566477}
   m_Layer: 0
   m_Name: PhaseBlock
-  m_TagString: MoveableObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94f59eb6d46b5740b2b16f2aa0fae3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSolid: 1
   PhaseCount: 0

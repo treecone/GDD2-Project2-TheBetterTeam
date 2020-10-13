@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
     private MoveableObject mObject;
     private GameManager GM;
     private bool jumped;
+
+    ContactFilter2D contactFilter;
     private BoxCollider2D playerCollider;
 
     private float playerSpriteHeight;
@@ -23,6 +26,9 @@ public class Player : MonoBehaviour
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerSpriteHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents.y;
         playerCollider = gameObject.GetComponent<BoxCollider2D>();
+
+        contactFilter = new ContactFilter2D();
+        contactFilter.useTriggers = true;
     }
 
     // Update is called once per frame
@@ -118,6 +124,7 @@ public class Player : MonoBehaviour
         if (CheckForDeath())
         {
             Debug.Log("Player has died!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -132,12 +139,15 @@ public class Player : MonoBehaviour
 
         // Handles enemy collisions I think?
         List<Collider2D> collisions = new List<Collider2D>();
-        ContactFilter2D contactFilter = new ContactFilter2D();
-        contactFilter.useTriggers = true;
         if (playerCollider.OverlapCollider(contactFilter, collisions) > 0)
         {
-            Debug.Log("Size: " + collisions.Count());
-            return true;
+            foreach (Collider2D colliderResult in collisions)
+            {
+                if (colliderResult.GetComponent<Enemy>() != null)
+                {
+                    return true;
+                }
+            }
         }
 
         return false;
@@ -147,7 +157,8 @@ public class Player : MonoBehaviour
     {
         if (!mObject.checkDirection(Vector2.down))
         {
-            GM.ForwardTime();
+            // Removing this line fixes the phasing blocks
+            //GM.ForwardTime();
             mObject.ApplyTime(Vector2.down);
         }
     }
@@ -156,7 +167,8 @@ public class Player : MonoBehaviour
     {
         if (!FocusedObject.GetComponent<MoveableObject>().checkDirection(Vector2.down))
         {
-            GM.ForwardTime();
+            // Removing this line fixes the phasing blocks
+            //GM.ForwardTime();
             FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
         }
     }
