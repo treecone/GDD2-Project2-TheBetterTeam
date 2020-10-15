@@ -32,4 +32,9 @@ public class PhaseBlock : EntityTile
             spriteRenderer.color = Color.black;
         }
     }
+
+    public override void CollectObject()
+    {
+        Debug.LogError("You tried to collect a non-collectable object...");
+    }
 }

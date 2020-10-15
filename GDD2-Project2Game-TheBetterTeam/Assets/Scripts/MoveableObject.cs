@@ -81,6 +81,12 @@ public class MoveableObject : MonoBehaviour
                 {
                     return true;
                 }
+
+                // Collectible objects
+                if (entityTile.isCollectible)
+                {
+                    entityTile.CollectObject();
+                }
             }
         }
         return false;

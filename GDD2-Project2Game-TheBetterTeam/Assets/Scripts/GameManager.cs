@@ -34,11 +34,6 @@ public class GameManager : MonoBehaviour
         {
             ForwardTime();
         }
-        //Prob move this to when a player picks up a shard so we dont have to call it every frame
-        if (numberOfShards >= shardsPerLevel[SceneManager.GetActiveScene().buildIndex])
-        {
-            GameObject.FindWithTag("Settings").GetComponent<Settings>().NextLevel();
-        }
     }
 
     public void ForwardTime ()
@@ -69,6 +64,20 @@ public class GameManager : MonoBehaviour
             {
                 obj.GetComponent<PhaseBlock>().UpdatePhaseCount();
             }
+        }
+    }
+
+    public void OnShardCollected()
+    {
+        Debug.Log("OnShardCollected()");
+        numberOfShards++;
+
+        //Prob move this to when a player picks up a shard so we dont have to call it every frame
+        if (numberOfShards >= shardsPerLevel[SceneManager.GetActiveScene().buildIndex])
+        {
+            Debug.Log("Next Level, son!()");
+            numberOfShards = 0;
+            GameObject.FindWithTag("Settings").GetComponent<Settings>().NextLevel();
         }
     }
 
