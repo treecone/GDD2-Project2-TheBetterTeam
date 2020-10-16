@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4696366875897474154}
   - component: {fileID: 3436192663898430313}
   - component: {fileID: 1005475653153223152}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LedgeFaller
   m_TagString: MoveableObject
   m_Icon: {fileID: 0}

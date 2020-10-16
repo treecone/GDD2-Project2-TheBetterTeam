@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3929581177312314178}
   - component: {fileID: 6344369618701562945}
   - component: {fileID: 6399568536400923256}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LedgeAvoider
   m_TagString: MoveableObject
   m_Icon: {fileID: 0}

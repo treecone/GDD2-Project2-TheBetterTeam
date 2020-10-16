@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public class Interactable : EntityTile
 {
     public bool isFocused;
 
@@ -41,5 +41,10 @@ public class Interactable : MonoBehaviour
         {
             GameObject.Find("Player").GetComponent<Player>().FocusedObject = null;
         }
+    }
+
+    public override void CollectObject()
+    {
+        Debug.Log("Tried to collect a non-collectible object: " + gameObject.name);
     }
 }

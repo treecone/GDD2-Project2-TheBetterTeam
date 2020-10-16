@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
     public GameObject FocusedObject;
     private bool focusedJumped;
 
@@ -123,7 +122,6 @@ public class Player : MonoBehaviour
         // Handles player death if applicable
         if (CheckForDeath())
         {
-            Debug.Log("Player has died!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
@@ -137,7 +135,7 @@ public class Player : MonoBehaviour
             return true;
         }
 
-        // Handles enemy collisions I think?
+        // Handles enemy collisions
         List<Collider2D> collisions = new List<Collider2D>();
         if (playerCollider.OverlapCollider(contactFilter, collisions) > 0)
         {

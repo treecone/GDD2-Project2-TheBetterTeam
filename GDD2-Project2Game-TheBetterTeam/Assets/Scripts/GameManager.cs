@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RemoveMoveableObject(GameObject removalObject)
+    {
+        moveableObjects.Remove(removalObject);
+    }
+
     public void ForwardTime ()
     {
         UpdatePhaseBlocks();

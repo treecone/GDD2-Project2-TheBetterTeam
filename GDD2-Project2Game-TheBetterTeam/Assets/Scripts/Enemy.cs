@@ -14,6 +14,13 @@ public abstract class Enemy : MoveableObject
         Invalid
     }
 
+    // Removes enemy from the game manager's moveable object list
+    private void OnDestroy()
+    {
+        GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        manager.RemoveMoveableObject(gameObject);
+    }
+
     // Converts an enemy direction into the appropriate Vector2
     public Vector2 VectorFromEnemyDirection(EnemyDirection direction)
     {
@@ -57,6 +64,4 @@ public abstract class Enemy : MoveableObject
             return EnemyDirection.Invalid;
         }
     }
-
-    // ...Maybe there isn't a use for this class right now.
 }

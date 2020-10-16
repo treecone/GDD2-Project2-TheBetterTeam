@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4722917454174945062}
   - component: {fileID: 3389024320593938469}
   - component: {fileID: -5849203565919498881}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FlierSolid
   m_TagString: MoveableObject
   m_Icon: {fileID: 0}

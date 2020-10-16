@@ -51,6 +51,8 @@ public class MoveableObject : MonoBehaviour
             }
             else if (!checkDirection(direction))
             {
+                if (gameObject.GetComponent<Enemy>() != null)
+                    Debug.Log("Enemy checkDriection: " + direction);
                 StartCoroutine(Move(direction, 0.2f));
             }
         }
@@ -68,24 +70,28 @@ public class MoveableObject : MonoBehaviour
     {
         // Do a raycast
         RaycastHit2D raycastResult = Physics2D.Raycast(transform.position, direction, 1.0f);
+
+        Debug.Log(transform.position + new Vector3(direction.x, direction.y, 0.0f));
         // If something is found
         if (raycastResult.transform != null)
         {
-            // Check if it is an entity tile, that's all we are concerned with
-            EntityTile entityTile = raycastResult.transform.gameObject.GetComponent<EntityTile>();
-            if (entityTile != null)
+            if (raycastResult.transform.gameObject != gameObject)
             {
-                // Here is where we should do "passable" checks.
-                // isSolid is used for phase blocks
-                if (entityTile.isSolid)
+                // Check if it is an entity tile
+                EntityTile entityTile = raycastResult.transform.gameObject.GetComponent<EntityTile>();
+                if (entityTile != null)
                 {
-                    return true;
-                }
+                    // Here is where we should do "passable" checks.
+                    if (entityTile.isSolid)
+                    {
+                        return true;
+                    }
 
-                // Collectible objects
-                if (entityTile.isCollectible)
-                {
-                    entityTile.CollectObject();
+                    // Collectible objects
+                    if (entityTile.isCollectible)
+                    {
+                        entityTile.CollectObject();
+                    }
                 }
             }
         }
