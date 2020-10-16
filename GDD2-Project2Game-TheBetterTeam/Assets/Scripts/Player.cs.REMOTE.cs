@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+
     public GameObject FocusedObject;
     private bool focusedJumped;
 
@@ -148,7 +149,7 @@ public class Player : MonoBehaviour
             return true;
         }
 
-        // Handles enemy collisions
+        // Handles enemy collisions I think?
         List<Collider2D> collisions = new List<Collider2D>();
         if (playerCollider.OverlapCollider(contactFilter, collisions) > 0)
         {

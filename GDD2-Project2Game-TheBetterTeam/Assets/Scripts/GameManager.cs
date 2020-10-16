@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private int numberOfShards;
     [SerializeField]
     private int[] shardsPerLevel;
+    [SerializeField]
+    private AudioClip shardPickupSound;
 
     void Start()
     {
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("OnShardCollected()");
         numberOfShards++;
-
+        gameObject.GetComponent<AudioSource>().PlayOneShot(shardPickupSound);
         //Prob move this to when a player picks up a shard so we dont have to call it every frame
         if (numberOfShards >= shardsPerLevel[SceneManager.GetActiveScene().buildIndex])
         {

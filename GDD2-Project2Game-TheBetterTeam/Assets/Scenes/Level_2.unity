@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 711022903}
   - component: {fileID: 711022902}
   - component: {fileID: 711022904}
+  - component: {fileID: 711022905}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -335,6 +336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FocusedObject: {fileID: 0}
+  moveAudio: {fileID: 8300000, guid: 398a771efa12ead4fa8e0347aef763f7, type: 3}
+  jumpAudio: {fileID: 8300000, guid: f198d8aed2ac3ec469d51b5224e4724d, type: 3}
+  deathAudio: {fileID: 8300000, guid: c9a1fbb3704fa8543ad2fd56f581e5aa, type: 3}
 --- !u!114 &711022903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +379,102 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.5}
   m_EdgeRadius: 0
+--- !u!82 &711022905
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711022899}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &721822563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5100,6 +5200,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1378305561407336475, guid: a8ee661b3257abf429307151e14ddb40, type: 3}
+      propertyPath: shardPickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 60c2ebc672aad914a8b60ac11f5d6e7c, type: 3}
     - target: {fileID: 1875066400909696297, guid: a8ee661b3257abf429307151e14ddb40, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -5276,6 +5380,22 @@ PrefabInstance:
     - target: {fileID: 1474287850918604267, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901331590054092299, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901331590722750816, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901331590955650305, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901331591412501056, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6636050184096859302, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
