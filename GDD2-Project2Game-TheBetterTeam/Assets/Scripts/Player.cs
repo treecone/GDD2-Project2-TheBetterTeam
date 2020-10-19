@@ -14,6 +14,14 @@ public class Player : MonoBehaviour
     private GameManager GM;
     private bool jumped;
 
+    //Audio
+    [SerializeField]
+    private AudioClip moveAudio;
+    [SerializeField]
+    private AudioClip jumpAudio;
+    [SerializeField]
+    private AudioClip deathAudio;
+
     ContactFilter2D contactFilter;
     private BoxCollider2D playerCollider;
 
@@ -43,6 +51,7 @@ public class Player : MonoBehaviour
                 {
                     GM.ForwardTime();
                     mObject.ApplyTime(Vector2.up);
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(jumpAudio);
                     jumped = true;
                 }
             }
@@ -63,6 +72,7 @@ public class Player : MonoBehaviour
             if (FocusedObject == null)
             {
                 mObject.ApplyTime(Vector2.left);
+                gameObject.GetComponent<AudioSource>().PlayOneShot(moveAudio);
                 jumped = false;
             }
             else
@@ -78,6 +88,7 @@ public class Player : MonoBehaviour
             if (FocusedObject == null)
             {
                 mObject.ApplyTime(Vector2.right);
+                gameObject.GetComponent<AudioSource>().PlayOneShot(moveAudio);
                 jumped = false;
             }
             else
@@ -124,6 +135,7 @@ public class Player : MonoBehaviour
         if (CheckForDeath())
         {
             Debug.Log("Player has died!");
+            gameObject.GetComponent<AudioSource>().PlayOneShot(deathAudio);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
