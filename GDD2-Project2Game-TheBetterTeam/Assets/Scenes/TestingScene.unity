@@ -397,6 +397,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FocusedObject: {fileID: 0}
+  moveAudio: {fileID: 8300000, guid: 398a771efa12ead4fa8e0347aef763f7, type: 3}
+  jumpAudio: {fileID: 8300000, guid: f198d8aed2ac3ec469d51b5224e4724d, type: 3}
+  deathAudio: {fileID: 8300000, guid: c9a1fbb3704fa8543ad2fd56f581e5aa, type: 3}
 --- !u!114 &711022903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5485,6 +5488,22 @@ PrefabInstance:
     - target: {fileID: 1474287850918604267, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901331590054092299, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901331590722750816, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901331590955650305, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901331591412501056, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6636050184096859302, guid: 0cf097430ac506845b38ec9d312268b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
