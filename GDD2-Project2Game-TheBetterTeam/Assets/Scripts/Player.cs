@@ -21,6 +21,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioClip deathAudio;
 
+    //Animation 
+    [SerializeField]
+    private int animationFrame;
+    [SerializeField]
+    private Sprite[] walkingSprites;
+    [SerializeField]
+    private Sprite[] jumpingSprites;
+
+
     ContactFilter2D contactFilter;
     private BoxCollider2D playerCollider;
 
@@ -51,6 +60,7 @@ public class Player : MonoBehaviour
                     GM.ForwardTime();
                     mObject.ApplyTime(Vector2.up);
                     gameObject.GetComponent<AudioSource>().PlayOneShot(jumpAudio);
+                    gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[0];
                     jumped = true;
                 }
             }
@@ -72,7 +82,18 @@ public class Player : MonoBehaviour
             {
                 mObject.ApplyTime(Vector2.left);
                 gameObject.GetComponent<AudioSource>().PlayOneShot(moveAudio);
-                jumped = false;
+                if (jumped == true)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
+                    jumped = false;
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[animationFrame++];
+                }
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                if (animationFrame >= walkingSprites.Length)
+                    animationFrame = 0;
             }
             else
             {
@@ -88,7 +109,18 @@ public class Player : MonoBehaviour
             {
                 mObject.ApplyTime(Vector2.right);
                 gameObject.GetComponent<AudioSource>().PlayOneShot(moveAudio);
-                jumped = false;
+                if (jumped == true)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
+                    jumped = false;
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[animationFrame++];
+                }
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                if (animationFrame >= walkingSprites.Length)
+                    animationFrame = 0;
             }
             else
             {
@@ -103,6 +135,7 @@ public class Player : MonoBehaviour
             if (FocusedObject == null)
             {
                 mObject.ApplyTime(Vector2.down);
+                gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
                 jumped = false;
             }
             else
@@ -170,6 +203,7 @@ public class Player : MonoBehaviour
         {
             // Removing this line fixes the phasing blocks
             //GM.ForwardTime();
+            gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
             mObject.ApplyTime(Vector2.down);
         }
     }

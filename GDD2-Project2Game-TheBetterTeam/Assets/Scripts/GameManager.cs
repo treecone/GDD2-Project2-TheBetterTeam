@@ -82,9 +82,7 @@ public class GameManager : MonoBehaviour
         //Prob move this to when a player picks up a shard so we dont have to call it every frame
         if (numberOfShards >= shardsPerLevel[SceneManager.GetActiveScene().buildIndex])
         {
-            Debug.Log("Next Level, son!()");
-            numberOfShards = 0;
-            GameObject.FindWithTag("Settings").GetComponent<Settings>().NextLevel();
+            StartCoroutine("GoingToNextLevel");
         }
     }
 
@@ -94,5 +92,18 @@ public class GameManager : MonoBehaviour
         {
             moveableObjects.Add(newObject);
         }
+    }
+
+    [SerializeField]
+    private AudioClip win;
+
+    IEnumerator GoingToNextLevel ()
+    {
+        Debug.Log("Next Level, son!()");
+        numberOfShards = 0;
+        gameObject.GetComponent<AudioSource>().PlayOneShot(win);
+        yield return new WaitForSeconds(4f);
+        GameObject.FindWithTag("Settings").GetComponent<Settings>().NextLevel();
+
     }
 }
