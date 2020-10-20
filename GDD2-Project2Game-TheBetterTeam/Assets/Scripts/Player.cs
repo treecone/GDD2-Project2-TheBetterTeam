@@ -166,7 +166,6 @@ public class Player : MonoBehaviour
         // Handles player death if applicable
         if (CheckForDeath())
         {
-            Debug.Log("Player has died!");
             gameObject.GetComponent<AudioSource>().PlayOneShot(deathAudio);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
