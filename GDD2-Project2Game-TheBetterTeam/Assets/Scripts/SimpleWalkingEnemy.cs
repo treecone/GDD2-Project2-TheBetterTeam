@@ -11,6 +11,12 @@ public class SimpleWalkingEnemy : Enemy
     [SerializeField]
     private bool isLedgeAvoidant = true;
 
+    //Animation
+    [SerializeField]
+    private Sprite[] movementAnimations;
+    [SerializeField]
+    private int animationFrame;
+
     // Is this enemy stuck walking on the ground?
     [SerializeField]
     private bool isGrounded = true;
@@ -26,6 +32,8 @@ public class SimpleWalkingEnemy : Enemy
 
     public override void ApplyTime(Vector2 direction)
     {
+        gameObject.GetComponent<SpriteRenderer>().sprite = movementAnimations[animationFrame++];
+        if (animationFrame >= movementAnimations.Length) { animationFrame = 0; }
         // Apply gravity if this enemy is grounded
         if (isGrounded)
         {
@@ -69,6 +77,7 @@ public class SimpleWalkingEnemy : Enemy
     private void FlipEnemy()
     {
         enemyDirectionVector *= -1;
+        gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
         enemyDirection = EnemyDirectionFromVector(enemyDirectionVector);
     }
 }
