@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public GameObject FocusedObject;
     private bool focusedJumped;
 
+    private AudioManager audioManager;
+
     private MoveableObject mObject;
     private GameManager GM;
     private bool jumped;
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour
     {
         mObject = gameObject.GetComponent<MoveableObject>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioManager = GameObject.Find("PlayerCanvas").GetComponent<AudioManager>();
         playerSpriteHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents.y;
         playerCollider = gameObject.GetComponent<BoxCollider2D>();
 
@@ -59,7 +62,7 @@ public class Player : MonoBehaviour
                 {
                     GM.ForwardTime();
                     mObject.ApplyTime(Vector2.up);
-                    gameObject.GetComponent<AudioSource>().PlayOneShot(jumpAudio);
+                    audioManager.PlaySFX(jumpAudio);
                     gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[0];
                     jumped = true;
                 }
@@ -81,7 +84,7 @@ public class Player : MonoBehaviour
             if (FocusedObject == null)
             {
                 mObject.ApplyTime(Vector2.left);
-                gameObject.GetComponent<AudioSource>().PlayOneShot(moveAudio);
+                audioManager.PlaySFX(moveAudio);
                 if (jumped == true)
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
@@ -108,7 +111,7 @@ public class Player : MonoBehaviour
             if (FocusedObject == null)
             {
                 mObject.ApplyTime(Vector2.right);
-                gameObject.GetComponent<AudioSource>().PlayOneShot(moveAudio);
+                audioManager.PlaySFX(moveAudio);
                 if (jumped == true)
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
@@ -166,7 +169,7 @@ public class Player : MonoBehaviour
         // Handles player death if applicable
         if (CheckForDeath())
         {
-            gameObject.GetComponent<AudioSource>().PlayOneShot(deathAudio);
+            audioManager.PlaySFX(deathAudio);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

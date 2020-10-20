@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     private int[] shardsPerLevel;
     [SerializeField]
     private AudioClip shardPickupSound;
+    [SerializeField]
+    private AudioClip levelMusic;
+
+    private AudioManager audioManager;
 
     void Start()
     {
@@ -26,6 +30,9 @@ public class GameManager : MonoBehaviour
                 moveableObjects.Add(moveObj);
             }
         }
+
+        audioManager = GameObject.Find("PlayerCanvas").GetComponent<AudioManager>();
+        audioManager.PlayMusic(levelMusic);
     }
 
     // Update is called once per frame
@@ -76,9 +83,8 @@ public class GameManager : MonoBehaviour
 
     public void OnShardCollected()
     {
-        Debug.Log("OnShardCollected()");
         numberOfShards++;
-        gameObject.GetComponent<AudioSource>().PlayOneShot(shardPickupSound);
+        audioManager.PlaySFX(shardPickupSound);
         //Prob move this to when a player picks up a shard so we dont have to call it every frame
         if (numberOfShards >= shardsPerLevel[SceneManager.GetActiveScene().buildIndex])
         {
@@ -101,7 +107,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Next Level, son!()");
         numberOfShards = 0;
-        gameObject.GetComponent<AudioSource>().PlayOneShot(win);
+        audioManager.PlaySFX(win);
         yield return new WaitForSeconds(4f);
         GameObject.FindWithTag("Settings").GetComponent<Settings>().NextLevel();
 

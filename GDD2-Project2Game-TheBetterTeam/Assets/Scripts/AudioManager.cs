@@ -18,6 +18,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource musicSource;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
         musicVolume = 1.0f;
@@ -25,7 +29,7 @@ public class AudioManager : MonoBehaviour
 
         // Add listeners to the sliders and invokes a method when the value changes.
         musicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(); });
-        sfxSlider.onValueChanged.AddListener(delegate { SetMusicVolume(); });
+        sfxSlider.onValueChanged.AddListener(delegate { SetSFXVolume(); });
     }
 
     public void SetSFXVolume()
@@ -36,8 +40,6 @@ public class AudioManager : MonoBehaviour
             sfxVolume = 1.0f;
         else if (sfxVolume < 0.0f)
             sfxVolume = 0.0f;
-
-        Debug.Log("SFX Volume: " + sfxVolume);
     }
 
     public void SetMusicVolume()
@@ -49,7 +51,7 @@ public class AudioManager : MonoBehaviour
         else if (musicVolume < 0.0f)
             musicVolume = 0.0f;
 
-        Debug.Log("Music Volume: " + musicVolume);
+        musicSource.volume = musicVolume;
     }
 
     public void PlaySFX(AudioClip audioClip)
@@ -59,12 +61,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip music)
     {
-        if (musicSource.isPlaying)
+        if (music != musicSource.clip)
         {
             musicSource.Stop();
+            musicSource.clip = music;
+            musicSource.Play();
         }
-
-        musicSource.clip = music;
-        musicSource.Play();
     }
 }

@@ -48,6 +48,7 @@ MonoBehaviour:
   numberOfShards: 0
   shardsPerLevel: 0000000002000000030000000400000005000000
   shardPickupSound: {fileID: 8300000, guid: 60c2ebc672aad914a8b60ac11f5d6e7c, type: 3}
+  levelMusic: {fileID: 8300000, guid: 7674d768db3e7c8488067d4dcd408dc3, type: 3}
   win: {fileID: 8300000, guid: cc3ea1cec4b42704bbd8215fd6d78c82, type: 3}
 --- !u!82 &224138070
 AudioSource:
