@@ -25,11 +25,11 @@ public class PhaseBlock : EntityTile
 
         if (isSolid)
         {
-            spriteRenderer.color = Color.gray;
+            spriteRenderer.color = Color.white;
         }
         else
         {
-            spriteRenderer.color = Color.black;
+            spriteRenderer.color = new Color(0, 0, 0, 0);
         }
     }
 
