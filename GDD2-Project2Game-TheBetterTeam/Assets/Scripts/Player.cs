@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
 
         contactFilter = new ContactFilter2D();
         contactFilter.useTriggers = true;
+
+        gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[0];
     }
 
     // Update is called once per frame

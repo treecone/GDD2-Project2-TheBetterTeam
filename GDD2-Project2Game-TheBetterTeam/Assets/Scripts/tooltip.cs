@@ -17,16 +17,16 @@ public class tooltip : MonoBehaviour
         player = GameObject.Find("Player");
         showing = startShown;
         if (startShown)
-            opacity = 0;
-        else
             opacity = 255;
+        else
+            opacity = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         showing = (player.transform.position - transform.position).magnitude < radius;
-            
+
         if(showing)
         {
             opacity = Mathf.Min(1, opacity + .025f);
