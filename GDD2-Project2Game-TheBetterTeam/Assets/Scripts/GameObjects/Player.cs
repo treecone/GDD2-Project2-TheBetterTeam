@@ -234,6 +234,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Re-posess the player
+    public void OnMouseDown()
+    {
+        if (FocusedObject != null)
+        {
+            FocusedObject.GetComponent<Interactable>().isFocused = false;
+            FocusedObject = null;
+        }
+    }
+
     public void ResetJumps()
     {
         if(FocusedObject == null)

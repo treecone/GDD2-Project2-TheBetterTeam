@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetSFXVolume()
     {
+        Debug.Log("SFX volume changed");
         sfxVolume = sfxSlider.value;
 
         if (sfxVolume > 1.0f)
@@ -63,6 +64,8 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume()
     {
+
+        Debug.Log("Music volume changed");
         musicVolume = musicSlider.value;
 
         if (musicVolume > 1.0f)

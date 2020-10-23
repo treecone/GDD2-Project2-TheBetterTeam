@@ -13,10 +13,12 @@ public class MeteorCollection : MonoBehaviour
 
     public void CreateShards(int amount)
     {
+        Debug.Log("CreateShards()");
         //Clear previous shards
         foreach(GameObject obj in shards)
         {
             Destroy(obj);
+            Debug.Log("Destroy shards");
         }
 
         shards.Clear();
@@ -26,6 +28,7 @@ public class MeteorCollection : MonoBehaviour
         //Display shards onto player canvas
         for (int i = 0; i < totalShards; i++)
         {
+            Debug.Log("Create shard");
             shards.Add(Instantiate(meteorPrefab, transform, canvas.transform));
             shards[i].GetComponent<RectTransform>().localPosition = new Vector3(-362 + i * 45, 127, 0);
         }

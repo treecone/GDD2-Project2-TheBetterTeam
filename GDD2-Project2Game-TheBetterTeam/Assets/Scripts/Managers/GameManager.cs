@@ -92,7 +92,6 @@ public class GameManager : MonoBehaviour
     public void OnShardCollected()
     {
         numberOfShards++;
-        Debug.Log("Shards collected: " + numberOfShards);
         audioManager.PlaySFX(shardPickupSound);
         GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CollectShard();
         //Prob move this to when a player picks up a shard so we dont have to call it every frame
@@ -128,21 +127,18 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("Scenes/Levels/Level" +currentLevel);
-
         GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CreateShards(shardsPerLevel[currentLevel]);
 
     }
 
     public void OnLevelWasLoaded(int level)
     {
-        //initialize first level
-        if (audioManager == null)
-        {
-            currentLevel = 1;
-            GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CreateShards(shardsPerLevel[1]);
-            audioManager = GameObject.Find("PlayerCanvas").GetComponent<AudioManager>();
+        currentLevel = level;
+        GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CreateShards(shardsPerLevel[currentLevel]);
+        audioManager = GameObject.Find("PlayerCanvas").GetComponent<AudioManager>();
+        
+        if (currentLevel == 1)
             audioManager.PlayMusic(levelMusic);
-        }
 
         GetAllMoveableObjects();
     }
