@@ -13,6 +13,7 @@ public class Settings : MonoBehaviour
     public void ReturnToMainMenu ()
     {
         SceneManager.LoadScene(0);
+        Destroy(gameObject);
     }
 
     public void QuitGame ()
