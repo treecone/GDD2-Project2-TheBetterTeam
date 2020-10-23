@@ -7,7 +7,7 @@ public class Settings : MonoBehaviour
 {
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ReturnToMainMenu ()
@@ -18,5 +18,10 @@ public class Settings : MonoBehaviour
     public void QuitGame ()
     {
         Application.Quit();
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Scenes/Levels/Level1");
     }
 }
