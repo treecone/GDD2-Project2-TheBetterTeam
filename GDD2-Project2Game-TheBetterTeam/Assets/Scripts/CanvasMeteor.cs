@@ -7,8 +7,11 @@ public class CanvasMeteor : MonoBehaviour
 {
     public Sprite collected, empty;
 
-    public void Collect()
+    public void SetCollectionStatus(bool isCollected)
     {
-        gameObject.GetComponent<Image>().sprite = collected;
+        if (isCollected)
+            gameObject.GetComponent<Image>().sprite = collected;
+        else
+            gameObject.GetComponent<Image>().sprite = empty;
     }
 }

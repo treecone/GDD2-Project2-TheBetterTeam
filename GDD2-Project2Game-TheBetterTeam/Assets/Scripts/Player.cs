@@ -171,6 +171,7 @@ public class Player : MonoBehaviour
         // Handles player death if applicable
         if (CheckForDeath())
         {
+            GM.ResetShardsOnDeath();
             audioManager.PlaySFX(deathAudio);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

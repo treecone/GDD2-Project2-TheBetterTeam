@@ -81,7 +81,6 @@ public class MoveableObject : MonoBehaviour
                     // Here is where we should do "passable" checks.
                     if (entityTile.isSolid)
                     {
-                        Debug.Log("Solid!");
                         return true;
                     }
 

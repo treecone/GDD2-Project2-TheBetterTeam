@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     public void OnShardCollected()
     {
         numberOfShards++;
+        Debug.Log("Shards collected: " + numberOfShards);
         audioManager.PlaySFX(shardPickupSound);
         GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CollectShard();
         //Prob move this to when a player picks up a shard so we dont have to call it every frame
@@ -94,6 +95,13 @@ public class GameManager : MonoBehaviour
             currentLevel++;
             StartCoroutine("GoingToNextLevel");
         }
+    }
+
+    public void ResetShardsOnDeath()
+    {
+        GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().ResetShards();
+        numberOfShards = 0;
+        Debug.Log("ResetShardsOnDeath()");
     }
 
     public void AddMoveableObject(GameObject newObject)

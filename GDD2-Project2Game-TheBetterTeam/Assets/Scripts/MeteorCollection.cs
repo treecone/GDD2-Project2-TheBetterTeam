@@ -11,16 +11,6 @@ public class MeteorCollection : MonoBehaviour
     public int shardsCollected;
     public int totalShards;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-
-    }
-
     public void CreateShards(int amount)
     {
         //Clear previous shards
@@ -43,7 +33,17 @@ public class MeteorCollection : MonoBehaviour
 
     public void CollectShard()
     {
-        shards[shardsCollected].GetComponent<CanvasMeteor>().Collect();
+        shards[shardsCollected].GetComponent<CanvasMeteor>().SetCollectionStatus(true);
         shardsCollected++;
+    }
+
+    public void ResetShards()
+    {
+        foreach(GameObject shard in shards)
+        {
+            shard.GetComponent<CanvasMeteor>().SetCollectionStatus(false);
+        }
+
+        shardsCollected = 0;
     }
 }
