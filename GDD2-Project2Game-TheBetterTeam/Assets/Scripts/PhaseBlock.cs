@@ -33,7 +33,7 @@ public class PhaseBlock : EntityTile
         }
         else
         {
-            spriteRenderer.color = new Color(0, 0, 0, 0);
+            spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.1f);
         }
     }
 

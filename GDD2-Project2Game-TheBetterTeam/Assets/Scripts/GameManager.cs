@@ -17,10 +17,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioClip levelMusic;
 
+    public int currentLevel;
     private AudioManager audioManager;
 
     void Start()
     {
+        //Use single gameManager throught game
+        DontDestroyOnLoad(this.gameObject);
+
         moveableObjects = new List<GameObject>(); // Otherwise there's a warning -_-
         GameObject[] allObj = FindObjectsOfType<GameObject>();
         foreach(GameObject moveObj in allObj)
@@ -30,9 +34,6 @@ public class GameManager : MonoBehaviour
                 moveableObjects.Add(moveObj);
             }
         }
-
-        audioManager = GameObject.Find("PlayerCanvas").GetComponent<AudioManager>();
-        audioManager.PlayMusic(levelMusic);
     }
 
     // Update is called once per frame
@@ -86,9 +87,11 @@ public class GameManager : MonoBehaviour
     {
         numberOfShards++;
         audioManager.PlaySFX(shardPickupSound);
+        GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CollectShard();
         //Prob move this to when a player picks up a shard so we dont have to call it every frame
-        if (numberOfShards >= shardsPerLevel[SceneManager.GetActiveScene().buildIndex])
+        if (numberOfShards >= shardsPerLevel[currentLevel])
         {
+            currentLevel++;
             StartCoroutine("GoingToNextLevel");
         }
     }
@@ -109,8 +112,22 @@ public class GameManager : MonoBehaviour
         Debug.Log("Next Level, son!()");
         numberOfShards = 0;
         audioManager.PlaySFX(win);
-        yield return new WaitForSeconds(4f);
-        GameObject.FindWithTag("Settings").GetComponent<Settings>().NextLevel();
+        yield return new WaitForSeconds(2f);
 
+        SceneManager.LoadScene("Scenes/Levels/Level" +currentLevel);
+        GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CreateShards(shardsPerLevel[currentLevel]);
+
+    }
+
+    public void OnLevelWasLoaded(int level)
+    {
+        //initialize first level
+        if (audioManager == null)
+        {
+            currentLevel = 1;
+            GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CreateShards(shardsPerLevel[1]);
+            audioManager = GameObject.Find("PlayerCanvas").GetComponent<AudioManager>();
+            audioManager.PlayMusic(levelMusic);
+        }
     }
 }

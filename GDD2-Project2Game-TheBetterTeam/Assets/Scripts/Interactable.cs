@@ -11,7 +11,7 @@ public class Interactable : EntityTile
         //highlight focused object
         if (isFocused)
         {
-            GetComponent<SpriteRenderer>().color = Color.yellow;
+            GetComponent<SpriteRenderer>().color = Color.red;
         }
         else
         {
