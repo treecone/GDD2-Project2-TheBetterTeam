@@ -75,7 +75,7 @@ public abstract class Enemy : MoveableObject
         }
         else
         {
-            Debug.Log("Invalid EnemyDirectionFromVector");
+            Debug.LogError("Invalid EnemyDirectionFromVector");
             return EnemyDirection.Invalid;
         }
     }
