@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4310760360738453789}
   - component: {fileID: 4310760360738453788}
   - component: {fileID: 4310760360738453791}
-  - component: {fileID: 5616412464203162871}
   - component: {fileID: 6125825517547926254}
+  - component: {fileID: 2832412780081668040}
   m_Layer: 0
   m_Name: MovableBlock
   m_TagString: MoveableObject
@@ -99,7 +99,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inMovement: 0
   isSolid: 1
---- !u!61 &5616412464203162871
+--- !u!114 &6125825517547926254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4310760360738453790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76564034806d4b64a85dec8ad302fd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSolid: 1
+  isCollectible: 0
+  isFocused: 0
+--- !u!61 &2832412780081668040
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,18 +140,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
---- !u!114 &6125825517547926254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4310760360738453790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76564034806d4b64a85dec8ad302fd98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSolid: 1
-  isCollectible: 0
-  isFocused: 0
