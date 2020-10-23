@@ -191,9 +191,20 @@ public class Player : MonoBehaviour
         {
             foreach (Collider2D colliderResult in collisions)
             {
+                // Collide with enemy
                 if (colliderResult.GetComponent<Enemy>() != null)
                 {
                     return true;
+                }
+                // Collide with phase block
+                else if (colliderResult.GetComponent<PhaseBlock>())
+                {
+                    return colliderResult.GetComponent<PhaseBlock>().isSolid;
+                }
+                // Collide with interactable block
+                else if (colliderResult.GetComponent<Interactable>())
+                {
+                    return colliderResult.GetComponent<Interactable>().isSolid;
                 }
             }
         }

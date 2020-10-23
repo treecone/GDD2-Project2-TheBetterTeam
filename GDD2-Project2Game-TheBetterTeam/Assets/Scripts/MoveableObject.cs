@@ -87,7 +87,7 @@ public class MoveableObject : MonoBehaviour
                         return true;
                     }
 
-                    // Collectible objects
+                    // Collect the object if it is collectible
                     if (entityTile.isCollectible)
                     {
                         entityTile.CollectObject();

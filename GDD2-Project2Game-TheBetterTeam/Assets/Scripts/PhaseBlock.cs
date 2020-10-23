@@ -8,10 +8,14 @@ public class PhaseBlock : EntityTile
     public int PhaseCountMax = 1;
 
     private SpriteRenderer spriteRenderer;
+    ContactFilter2D contactFilter;
 
     private void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        contactFilter = new ContactFilter2D();
+        contactFilter.useTriggers = true;
     }
 
     public void UpdatePhaseCount()
@@ -30,6 +34,30 @@ public class PhaseBlock : EntityTile
         else
         {
             spriteRenderer.color = new Color(0, 0, 0, 0);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Player>() != null)
+        {
+            Debug.Log("Collide with player!");
+        }
+    }
+
+    private void Update()
+    {
+        BoxCollider2D collider2D = gameObject.GetComponent<BoxCollider2D>();
+        List<Collider2D> collisions = new List<Collider2D>();
+        if (collider2D.OverlapCollider(contactFilter, collisions) > 0)
+        {
+            foreach (Collider2D colliderResult in collisions)
+            {
+                if (colliderResult.GetComponent<Player>() != null)
+                {
+                    Debug.Log("Collision with player!");
+                }
+            }
         }
     }
 
