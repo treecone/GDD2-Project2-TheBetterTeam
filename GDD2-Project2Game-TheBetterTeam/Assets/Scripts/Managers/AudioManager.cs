@@ -24,8 +24,26 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        musicVolume = 1.0f;
-        sfxVolume = 1.0f;
+        // Sets the playerprefs for the first time loaded. Otherwise, read in saved values
+        if (PlayerPrefs.GetString("PrefsSavedPreviously") == "")
+        {
+            musicVolume = 1.0f;
+            sfxVolume = 1.0f;
+
+            PlayerPrefs.SetFloat("musicVolume", musicVolume);
+            PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
+            PlayerPrefs.SetString("PrefsSavedPreviously", "true");
+        }
+        else
+        {
+            musicVolume = PlayerPrefs.GetFloat("musicVolume");
+            sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
+
+            musicSlider.SetValueWithoutNotify(musicVolume);
+            sfxSlider.SetValueWithoutNotify(sfxVolume);
+
+            musicSource.volume = musicVolume;
+        }
 
         // Add listeners to the sliders and invokes a method when the value changes.
         musicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(); });
@@ -40,6 +58,7 @@ public class AudioManager : MonoBehaviour
             sfxVolume = 1.0f;
         else if (sfxVolume < 0.0f)
             sfxVolume = 0.0f;
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
     }
 
     public void SetMusicVolume()
@@ -52,6 +71,7 @@ public class AudioManager : MonoBehaviour
             musicVolume = 0.0f;
 
         musicSource.volume = musicVolume;
+        PlayerPrefs.SetFloat("musicVolume", musicVolume);
     }
 
     public void PlaySFX(AudioClip audioClip)
