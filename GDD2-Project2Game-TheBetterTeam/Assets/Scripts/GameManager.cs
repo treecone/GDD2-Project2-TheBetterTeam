@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
 
     private void GetAllMoveableObjects()
     {
-        Debug.Log("GetAllMoveableObjects()");
         moveableObjects = new List<GameObject>();
         GameObject[] allObj = FindObjectsOfType<GameObject>();
         foreach (GameObject moveObj in allObj)
@@ -62,7 +61,6 @@ public class GameManager : MonoBehaviour
     {
         UpdatePhaseBlocks();
         GameObject playerFocus = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().FocusedObject;
-        Debug.Log(moveableObjects.Count);
         for (int i = 0; i < moveableObjects.Count; i++)
         {
             GameObject current = moveableObjects[i];
