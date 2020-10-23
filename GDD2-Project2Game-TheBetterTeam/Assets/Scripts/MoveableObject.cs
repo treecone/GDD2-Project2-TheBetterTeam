@@ -69,9 +69,6 @@ public class MoveableObject : MonoBehaviour
         // Do a raycast
         RaycastHit2D raycastResult = Physics2D.Raycast(transform.position, direction, 1.0f);
 
-        if (gameObject.name == "MovableBlock (3)")
-            Debug.Log("Control");
-
         // If something is found
         if (raycastResult.transform != null)
         {
@@ -84,6 +81,7 @@ public class MoveableObject : MonoBehaviour
                     // Here is where we should do "passable" checks.
                     if (entityTile.isSolid)
                     {
+                        Debug.Log("Solid!");
                         return true;
                     }
 

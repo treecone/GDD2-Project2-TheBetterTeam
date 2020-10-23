@@ -32,8 +32,9 @@ public class SimpleWalkingEnemy : Enemy
 
     public override void ApplyTime(Vector2 direction)
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = movementAnimations[animationFrame++];
-        if (animationFrame >= movementAnimations.Length) { animationFrame = 0; }
+        // Commented out so it doesn't crash
+        //gameObject.GetComponent<SpriteRenderer>().sprite = movementAnimations[animationFrame++];
+        //if (animationFrame >= movementAnimations.Length) { animationFrame = 0; }
         // Apply gravity if this enemy is grounded
         if (isGrounded)
         {
@@ -56,9 +57,20 @@ public class SimpleWalkingEnemy : Enemy
             {
                 FlipEnemy();
             }
+            else
+            {
+                Debug.Log("Not at wall");
+            }
         }
 
         ApplyDirection(enemyDirectionVector);
+
+        // If dead, remove from the game manager list and destroy
+        if (CheckForDeath())
+        {
+            FindObjectOfType<GameManager>().RemoveMoveableObject(gameObject);
+            Destroy(gameObject);
+        }
     }
 
     // Returns if the enemy is on a ledge.
@@ -70,7 +82,8 @@ public class SimpleWalkingEnemy : Enemy
     // Returns if the enemy is at a wall
     private bool IsAtWall()
     {
-        return CheckTilePosition((Vector2)(gameObject.transform.position) + enemyDirectionVector);
+        Vector2 positionToCheck = (Vector2)(gameObject.transform.position) + enemyDirectionVector;
+        return (CheckTilePosition(positionToCheck) || CheckEntityPosition(positionToCheck));
     }
 
     // Flips an enemy to face / move the opposite direction

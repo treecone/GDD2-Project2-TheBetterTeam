@@ -54,14 +54,15 @@ public class GameManager : MonoBehaviour
     {
         UpdatePhaseBlocks();
         GameObject playerFocus = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().FocusedObject;
-        foreach (GameObject obj in moveableObjects)
+        for (int i = 0; i < moveableObjects.Count; i++)
         {
-            if(obj.tag != "Player" || (obj.tag == "Player" && playerFocus != null)) 
+            GameObject current = moveableObjects[i];
+            if(current.tag != "Player" || (current.tag == "Player" && playerFocus != null)) 
             {
-                if (playerFocus != obj)
+                if (playerFocus != current)
                 {
                     //Gravity
-                    obj.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
+                    current.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
                     //Set jumped to false so that object can jump when switching back
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().ResetJumps();
                 }

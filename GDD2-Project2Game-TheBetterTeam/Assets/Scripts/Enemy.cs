@@ -5,6 +5,12 @@ using UnityEngine;
 
 public abstract class Enemy : MoveableObject
 {
+    ContactFilter2D contactFilter;
+
+    float enemySpriteHeight;
+
+    BoxCollider2D enemyCollider;
+
     public enum EnemyDirection
     {
         Left,
@@ -14,6 +20,15 @@ public abstract class Enemy : MoveableObject
         Invalid
     }
 
+    protected override void Start()
+    {
+        base.Start();
+
+        enemySpriteHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents.y;
+        enemyCollider = gameObject.GetComponent<BoxCollider2D>();
+        contactFilter = new ContactFilter2D();
+        contactFilter.useTriggers = true;
+    }
     // Removes enemy from the game manager's moveable object list
     private void OnDestroy()
     {
@@ -63,5 +78,36 @@ public abstract class Enemy : MoveableObject
             Debug.Log("Invalid EnemyDirectionFromVector");
             return EnemyDirection.Invalid;
         }
+    }
+
+    // Checks if the enemy should be dead
+    protected bool CheckForDeath()
+    {
+        // Fell off screen - uses sprite height so the death happens after the player is off-screen
+        if (gameObject.transform.position.y < 0 - enemySpriteHeight)
+        {
+            return true;
+        }
+
+        // Handles enemy collisions
+        List<Collider2D> collisions = new List<Collider2D>();
+        if (enemyCollider.OverlapCollider(contactFilter, collisions) > 0)
+        {
+            foreach (Collider2D colliderResult in collisions)
+            {
+                // Collide with phase block
+                if (colliderResult.GetComponent<PhaseBlock>())
+                {
+                    return colliderResult.GetComponent<PhaseBlock>().isSolid;
+                }
+                // Collide with interactable block
+                else if (colliderResult.GetComponent<Interactable>())
+                {
+                    return colliderResult.GetComponent<Interactable>().isSolid;
+                }
+            }
+        }
+
+        return false;
     }
 }
