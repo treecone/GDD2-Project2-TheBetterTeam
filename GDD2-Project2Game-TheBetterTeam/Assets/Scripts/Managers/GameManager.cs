@@ -24,25 +24,31 @@ public class GameManager : MonoBehaviour
     {
         //Use single gameManager throught game
         DontDestroyOnLoad(this.gameObject);
-
-        moveableObjects = new List<GameObject>(); // Otherwise there's a warning -_-
-        GameObject[] allObj = FindObjectsOfType<GameObject>();
-        foreach(GameObject moveObj in allObj)
-        {
-            if(moveObj.GetComponent<MoveableObject>() != null)
-            {
-                moveableObjects.Add(moveObj);
-            }
-        }
+        GetAllMoveableObjects();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debugging
+        /*
         if(Input.GetKeyDown(KeyCode.Space))
         {
             ForwardTime();
+        }
+        */
+    }
+
+    private void GetAllMoveableObjects()
+    {
+        moveableObjects = new List<GameObject>();
+        GameObject[] allObj = FindObjectsOfType<GameObject>();
+        foreach (GameObject moveObj in allObj)
+        {
+            if (moveObj.GetComponent<MoveableObject>() != null)
+            {
+                moveableObjects.Add(moveObj);
+            }
         }
     }
 
@@ -86,6 +92,7 @@ public class GameManager : MonoBehaviour
     public void OnShardCollected()
     {
         numberOfShards++;
+        Debug.Log("Shards collected: " + numberOfShards);
         audioManager.PlaySFX(shardPickupSound);
         GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CollectShard();
         //Prob move this to when a player picks up a shard so we dont have to call it every frame
@@ -94,6 +101,12 @@ public class GameManager : MonoBehaviour
             currentLevel++;
             StartCoroutine("GoingToNextLevel");
         }
+    }
+
+    public void ResetShardsOnDeath()
+    {
+        GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().ResetShards();
+        numberOfShards = 0;
     }
 
     public void AddMoveableObject(GameObject newObject)
@@ -115,6 +128,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("Scenes/Levels/Level" +currentLevel);
+
         GameObject.Find("PlayerCanvas").GetComponent<MeteorCollection>().CreateShards(shardsPerLevel[currentLevel]);
 
     }
@@ -129,5 +143,7 @@ public class GameManager : MonoBehaviour
             audioManager = GameObject.Find("PlayerCanvas").GetComponent<AudioManager>();
             audioManager.PlayMusic(levelMusic);
         }
+
+        GetAllMoveableObjects();
     }
 }

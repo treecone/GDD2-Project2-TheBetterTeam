@@ -57,10 +57,6 @@ public class SimpleWalkingEnemy : Enemy
             {
                 FlipEnemy();
             }
-            else
-            {
-                Debug.Log("Not at wall");
-            }
         }
 
         ApplyDirection(enemyDirectionVector);
