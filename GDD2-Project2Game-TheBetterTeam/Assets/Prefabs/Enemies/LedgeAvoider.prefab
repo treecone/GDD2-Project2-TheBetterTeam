@@ -73,9 +73,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f0c0d673be22693418de1dafa2370510, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.045656204, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: -3757855002720011204, guid: fd23efcc79da7ee489251463cbfbef38, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -98,10 +98,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inMovement: 0
   isSolid: 1
+  walkingAnimations:
+  - {fileID: -7220838460973858923, guid: fd23efcc79da7ee489251463cbfbef38, type: 3}
+  - {fileID: 4251186586673982267, guid: fd23efcc79da7ee489251463cbfbef38, type: 3}
+  - {fileID: 6132782424255385611, guid: fd23efcc79da7ee489251463cbfbef38, type: 3}
+  - {fileID: 8925084110998244987, guid: fd23efcc79da7ee489251463cbfbef38, type: 3}
+  falingAnimation: {fileID: 9088053485738117505, guid: fd23efcc79da7ee489251463cbfbef38, type: 3}
+  animationFrame: 0
   enemyDirection: 0
   isLedgeAvoidant: 1
-  movementAnimations: []
-  animationFrame: 0
   isGrounded: 1
 --- !u!61 &6399568536400923256
 BoxCollider2D:
@@ -120,7 +125,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.1566666, y: 1.24}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

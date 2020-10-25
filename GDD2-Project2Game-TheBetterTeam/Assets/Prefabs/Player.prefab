@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c8ca9c8d9e3148d4384c6a2eb8f215bf, type: 3}
+  m_Sprite: {fileID: 4951623220223309246, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118,13 +118,15 @@ MonoBehaviour:
   deathAudio: {fileID: 8300000, guid: c9a1fbb3704fa8543ad2fd56f581e5aa, type: 3}
   animationFrame: 0
   walkingSprites:
-  - {fileID: -4978726070537664189, guid: 82be7159e68b286449a6fef342b4f43d, type: 3}
-  - {fileID: -1024880413116209976, guid: 82be7159e68b286449a6fef342b4f43d, type: 3}
-  - {fileID: 4460614407289862626, guid: 82be7159e68b286449a6fef342b4f43d, type: 3}
-  - {fileID: 2696987730037836196, guid: 82be7159e68b286449a6fef342b4f43d, type: 3}
+  - {fileID: 8963376998423277321, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
+  - {fileID: 7701404662520029255, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
+  - {fileID: -7810946396006892220, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
+  - {fileID: -3865367851859089650, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
   jumpingSprites:
-  - {fileID: -4978726070537664189, guid: 82be7159e68b286449a6fef342b4f43d, type: 3}
-  - {fileID: 8072455073309678412, guid: 82be7159e68b286449a6fef342b4f43d, type: 3}
+  - {fileID: 3192268497520340172, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
+  - {fileID: -3865367851859089650, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
+  - {fileID: -6930787881223049585, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
+  idleSprite: {fileID: 4951623220223309246, guid: d69f3e6f074c11b4fb6f48597d843016, type: 3}
 --- !u!61 &7908186868942724969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,8 +143,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.2}
-    oldSize: {x: 1.77, y: 3.37}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.565, y: 1.995}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

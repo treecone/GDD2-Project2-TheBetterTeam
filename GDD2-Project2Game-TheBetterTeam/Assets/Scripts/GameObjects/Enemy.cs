@@ -20,6 +20,14 @@ public abstract class Enemy : MoveableObject
         Invalid
     }
 
+    //Animation
+    [SerializeField]
+    private Sprite[] walkingAnimations;
+    [SerializeField]
+    private Sprite falingAnimation;
+    [SerializeField]
+    private int animationFrame;
+
     protected override void Start()
     {
         base.Start();
@@ -34,6 +42,26 @@ public abstract class Enemy : MoveableObject
     {
         GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         manager.RemoveMoveableObject(gameObject);
+    }
+
+    public override void ApplyTime(Vector2 direction)
+    {
+        if(direction == Vector2.down)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = falingAnimation;
+
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = walkingAnimations[animationFrame++];
+        }
+        if (animationFrame >= walkingAnimations.Length)
+            animationFrame = 0;
+        Debug.Log("!@#");
+
+
+        base.ApplyTime(direction);
+
     }
 
     // Converts an enemy direction into the appropriate Vector2

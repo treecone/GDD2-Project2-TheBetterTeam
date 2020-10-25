@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private Sprite[] walkingSprites;
     [SerializeField]
     private Sprite[] jumpingSprites;
+    [SerializeField]
+    private Sprite idleSprite;
 
 
     ContactFilter2D contactFilter;
@@ -48,8 +50,6 @@ public class Player : MonoBehaviour
 
         contactFilter = new ContactFilter2D();
         contactFilter.useTriggers = true;
-
-        gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[0];
     }
 
     // Update is called once per frame
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
                     GM.ForwardTime();
                     mObject.ApplyTime(Vector2.up);
                     audioManager.PlaySFX(jumpAudio);
+                    animationFrame = 0;
                     gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[0];
                     jumped = true;
                 }
@@ -140,7 +141,7 @@ public class Player : MonoBehaviour
             if (FocusedObject == null)
             {
                 mObject.ApplyTime(Vector2.down);
-                gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
+                gameObject.GetComponent<SpriteRenderer>().sprite = idleSprite;
                 jumped = false;
             }
             else
@@ -219,7 +220,6 @@ public class Player : MonoBehaviour
         {
             // Removing this line fixes the phasing blocks
             //GM.ForwardTime();
-            gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
             mObject.ApplyTime(Vector2.down);
         }
     }
