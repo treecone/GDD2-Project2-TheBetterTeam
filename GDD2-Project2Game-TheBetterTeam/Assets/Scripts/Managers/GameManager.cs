@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private AudioClip shardPickupSound;
     [SerializeField]
     private AudioClip levelMusic;
+    [SerializeField]
+    private GameObject fader;
 
     public int currentLevel;
     private AudioManager audioManager;
@@ -104,6 +106,8 @@ public class GameManager : MonoBehaviour
         //Prob move this to when a player picks up a shard so we dont have to call it every frame
         if (numberOfShards >= shardsPerLevel[currentLevel])
         {
+            GameObject fadeObj = Instantiate(fader);
+            fadeObj.GetComponentInChildren<FadeScene>().Init(0, 1);
             currentLevel++;
             StartCoroutine("GoingToNextLevel");
         }
@@ -149,6 +153,9 @@ public class GameManager : MonoBehaviour
             audioManager = GameObject.Find("PlayerCanvas").GetComponent<AudioManager>();
             audioManager.PlayMusic(levelMusic);
         }
+
+        GameObject fadeObj = Instantiate(fader);
+        fadeObj.GetComponentInChildren<FadeScene>().Init(1, 0);
 
         GetAllMoveableObjects();
     }
