@@ -240,6 +240,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    /*
     // Re-posess the player
     public void OnMouseDown()
     {
@@ -249,6 +250,7 @@ public class Player : MonoBehaviour
             FocusedObject = null;
         }
     }
+    */
 
     public void ResetJumps()
     {
