@@ -25,4 +25,9 @@ public class Settings : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/Levels/Level1");
     }
+
+    public void loadCredits ()
+    {
+        SceneManager.LoadScene(SceneManager.sceneCount -1);
+    }
 }

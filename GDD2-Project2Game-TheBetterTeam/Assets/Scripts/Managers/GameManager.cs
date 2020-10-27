@@ -37,6 +37,12 @@ public class GameManager : MonoBehaviour
             ForwardTime();
         }
         */
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            //skip level
+            numberOfShards = 100;
+            OnShardCollected();
+        }
     }
 
     private void GetAllMoveableObjects()

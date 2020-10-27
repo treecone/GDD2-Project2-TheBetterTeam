@@ -1,37 +1,55 @@
 fileFormatVersion: 2
-guid: fd23efcc79da7ee489251463cbfbef38
+guid: d69f3e6f074c11b4fb6f48597d843016
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9088053485738117505
-    second: goober-spritesheet_0
+      213: -730708075184006240
+    second: character-stills-spreadsheet_0
   - first:
-      213: 1221307759563574524
-    second: goober-spritesheet_1
+      213: 261004115817374777
+    second: character-stills-spreadsheet_1
   - first:
-      213: -7220838460973858923
-    second: goober-spritesheet_2
+      213: 7411024035887785774
+    second: character-stills-spreadsheet_2
   - first:
-      213: 4251186586673982267
-    second: goober-spritesheet_3
+      213: -6930787881223049585
+    second: character-stills-spreadsheet_3
   - first:
-      213: -1614443720377635781
-    second: goober-spritesheet_4
+      213: -2559859596181434288
+    second: character-stills-spreadsheet_4
   - first:
-      213: -3809412340263347138
-    second: goober-spritesheet_5
+      213: -5150818165997633307
+    second: character-stills-spreadsheet_5
   - first:
-      213: -9121767548492566018
-    second: goober-spritesheet_6
+      213: 3192268497520340172
+    second: character-stills-spreadsheet_6
   - first:
-      213: 8925084110998244987
-    second: goober-spritesheet_7
+      213: -3865367851859089650
+    second: character-stills-spreadsheet_7
   - first:
-      213: 6132782424255385611
-    second: goober-spritesheet_8
+      213: -4820065314820946705
+    second: character-stills-spreadsheet_8
   - first:
-      213: -3757855002720011204
-    second: goober-spritesheet_9
+      213: 4361384962776238796
+    second: character-stills-spreadsheet_9
+  - first:
+      213: -7810946396006892220
+    second: character-stills-spreadsheet_10
+  - first:
+      213: 6881345420003628749
+    second: character-stills-spreadsheet_11
+  - first:
+      213: -6582774575316125446
+    second: character-stills-spreadsheet_12
+  - first:
+      213: 8963376998423277321
+    second: character-stills-spreadsheet_13
+  - first:
+      213: 7701404662520029255
+    second: character-stills-spreadsheet_14
+  - first:
+      213: 4951623220223309246
+    second: character-stills-spreadsheet_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -76,7 +94,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 350
+  spritePixelsToUnits: 250
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,211 +137,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: goober-spritesheet_0
+      name: character-stills-spreadsheet_2
       rect:
         serializedVersion: 2
-        x: 75
-        y: 622
-        width: 362
-        height: 293
+        x: 133
+        y: 522
+        width: 286
+        height: 429
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 189cb25ae704f1e70800000000000000
-      internalID: 9088053485738117505
+      spriteID: e2729f8681f39d660800000000000000
+      internalID: 7411024035887785774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: goober-spritesheet_1
+      name: character-stills-spreadsheet_3
       rect:
         serializedVersion: 2
-        x: 582
-        y: 588
-        width: 373
+        x: 643
+        y: 520
+        width: 254
+        height: 407
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8e2e169425e0df90800000000000000
+      internalID: -6930787881223049585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character-stills-spreadsheet_6
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 518
+        width: 219
+        height: 387
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cccae5ef8473d4c20800000000000000
+      internalID: 3192268497520340172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character-stills-spreadsheet_7
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 524
+        width: 349
+        height: 371
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0769b71b647b5ac0800000000000000
+      internalID: -3865367851859089650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character-stills-spreadsheet_10
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 0
+        width: 336
+        height: 370
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44d346213a1f99390800000000000000
+      internalID: -7810946396006892220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character-stills-spreadsheet_13
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 310
+        height: 381
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f2dead3ef446c70800000000000000
+      internalID: 8963376998423277321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character-stills-spreadsheet_14
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 17
+        width: 335
         height: 361
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfc0732cfe4f2f010800000000000000
-      internalID: 1221307759563574524
+      spriteID: 7402b0d9cb2e0ea60800000000000000
+      internalID: 7701404662520029255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: goober-spritesheet_2
+      name: character-stills-spreadsheet_15
       rect:
         serializedVersion: 2
-        x: 1118
-        y: 512
-        width: 324
-        height: 401
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59fbc296dad6acb90800000000000000
-      internalID: -7220838460973858923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: goober-spritesheet_3
-      rect:
-        serializedVersion: 2
-        x: 1609
-        y: 512
-        width: 367
-        height: 401
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b3bab944daf3ffa30800000000000000
-      internalID: 4251186586673982267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: goober-spritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 1714
-        y: 908
-        width: 6
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b3ce7017df75899e0800000000000000
-      internalID: -1614443720377635781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: goober-spritesheet_5
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 621
-        width: 12
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3c1d9fd8af322bc0800000000000000
-      internalID: -3809412340263347138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: goober-spritesheet_6
-      rect:
-        serializedVersion: 2
-        x: 677
-        y: 402
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef13a6c6eb8f86180800000000000000
-      internalID: -9121767548492566018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: goober-spritesheet_7
-      rect:
-        serializedVersion: 2
-        x: 61
+        x: 1627
         y: 0
-        width: 391
-        height: 393
+        width: 313
+        height: 399
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7e888a36b44cdb70800000000000000
-      internalID: 8925084110998244987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: goober-spritesheet_8
-      rect:
-        serializedVersion: 2
-        x: 601
-        y: 0
-        width: 335
-        height: 401
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b00508a3f150c1550800000000000000
-      internalID: 6132782424255385611
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: goober-spritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 1087
-        y: 0
-        width: 347
-        height: 372
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3cf275f8ca69dbc0800000000000000
-      internalID: -3757855002720011204
+      spriteID: eb57cfe7513b7b440800000000000000
+      internalID: 4951623220223309246
       vertices: []
       indices: 
       edges: []
@@ -331,7 +307,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2f791e1d1c30d79438301ea05123db8e
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

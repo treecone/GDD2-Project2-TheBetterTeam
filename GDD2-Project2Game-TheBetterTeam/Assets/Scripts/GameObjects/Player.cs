@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private Sprite[] walkingSprites;
     [SerializeField]
     private Sprite[] jumpingSprites;
+    [SerializeField]
+    private Sprite idleSprite;
 
 
     ContactFilter2D contactFilter;
@@ -48,106 +50,108 @@ public class Player : MonoBehaviour
 
         contactFilter = new ContactFilter2D();
         contactFilter.useTriggers = true;
-
-        gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[0];
     }
 
     // Update is called once per frame
     void Update()
     {
         //Input
-        if (Input.GetKeyDown(KeyCode.W))
+        if (!gameObject.GetComponent<MoveableObject>().inMovement)
         {
-            if (FocusedObject == null)
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                if (jumped == false)
+                if (FocusedObject == null)
                 {
-                    GM.ForwardTime();
-                    mObject.ApplyTime(Vector2.up);
-                    audioManager.PlaySFX(jumpAudio);
-                    gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[0];
-                    jumped = true;
+                    if (jumped == false)
+                    {
+                        GM.ForwardTime();
+                        mObject.ApplyTime(Vector2.up);
+                        audioManager.PlaySFX(jumpAudio);
+                        animationFrame = 0;
+                        gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[0];
+                        jumped = true;
+                    }
+                }
+                else
+                {
+                    if (focusedJumped == false)
+                    {
+                        GM.ForwardTime();
+                        //move focused object
+                        FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.up);
+                        focusedJumped = true;
+                    }
                 }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                if (focusedJumped == false)
+                GM.ForwardTime();
+                if (FocusedObject == null)
                 {
-                    GM.ForwardTime();
+                    mObject.ApplyTime(Vector2.left);
+                    audioManager.PlaySFX(moveAudio);
+                    if (jumped == true)
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
+                        jumped = false;
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[animationFrame++];
+                    }
+                    gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                    if (animationFrame >= walkingSprites.Length)
+                        animationFrame = 0;
+                }
+                else
+                {
                     //move focused object
-                    FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.up);
-                    focusedJumped = true;
+                    FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.left);
+                    focusedJumped = false;
                 }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GM.ForwardTime();
-            if (FocusedObject == null)
+            if (Input.GetKeyDown(KeyCode.D))
             {
-                mObject.ApplyTime(Vector2.left);
-                audioManager.PlaySFX(moveAudio);
-                if (jumped == true)
+                GM.ForwardTime();
+                if (FocusedObject == null)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
+                    mObject.ApplyTime(Vector2.right);
+                    audioManager.PlaySFX(moveAudio);
+                    if (jumped == true)
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
+                        jumped = false;
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[animationFrame++];
+                    }
+                    gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                    if (animationFrame >= walkingSprites.Length)
+                        animationFrame = 0;
+                }
+                else
+                {
+                    //move focused object
+                    FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.right);
+                    focusedJumped = false;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                GM.ForwardTime();
+                if (FocusedObject == null)
+                {
+                    mObject.ApplyTime(Vector2.down);
+                    gameObject.GetComponent<SpriteRenderer>().sprite = idleSprite;
                     jumped = false;
                 }
                 else
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[animationFrame++];
+                    //move focused object
+                    FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
+                    focusedJumped = false;
                 }
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
-                if (animationFrame >= walkingSprites.Length)
-                    animationFrame = 0;
-            }
-            else
-            {
-                //move focused object
-                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.left);
-                focusedJumped = false;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            GM.ForwardTime();
-            if (FocusedObject == null)
-            {
-                mObject.ApplyTime(Vector2.right);
-                audioManager.PlaySFX(moveAudio);
-                if (jumped == true)
-                {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
-                    jumped = false;
-                }
-                else
-                {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = walkingSprites[animationFrame++];
-                }
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
-                if (animationFrame >= walkingSprites.Length)
-                    animationFrame = 0;
-            }
-            else
-            {
-                //move focused object
-                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.right);
-                focusedJumped = false;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            GM.ForwardTime();
-            if (FocusedObject == null)
-            {
-                mObject.ApplyTime(Vector2.down);
-                gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
-                jumped = false;
-            }
-            else
-            {
-                //move focused object
-                FocusedObject.GetComponent<MoveableObject>().ApplyTime(Vector2.down);
-                focusedJumped = false;
             }
         }
 
@@ -219,7 +223,6 @@ public class Player : MonoBehaviour
         {
             // Removing this line fixes the phasing blocks
             //GM.ForwardTime();
-            gameObject.GetComponent<SpriteRenderer>().sprite = jumpingSprites[1];
             mObject.ApplyTime(Vector2.down);
         }
     }

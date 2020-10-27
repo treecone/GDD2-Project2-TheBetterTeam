@@ -47,11 +47,17 @@ public class MoveableObject : MonoBehaviour
         {
             if (!isSolid)
             {
-                StartCoroutine(Move(direction, 0.2f));
+                if(direction.y == -1)
+                    StartCoroutine(Move(direction, 0.2f));
+                else
+                    StartCoroutine(Move(direction, 0.1f));
             }
             else if (!checkDirection(direction))
             {
-                StartCoroutine(Move(direction, 0.2f));
+                if (direction.y == -1)
+                    StartCoroutine(Move(direction, 0.2f));
+                else
+                    StartCoroutine(Move(direction, 0.1f));
             }
         }
     }

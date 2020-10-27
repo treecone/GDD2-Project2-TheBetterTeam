@@ -11,12 +11,6 @@ public class SimpleWalkingEnemy : Enemy
     [SerializeField]
     private bool isLedgeAvoidant = true;
 
-    //Animation
-    [SerializeField]
-    private Sprite[] movementAnimations;
-    [SerializeField]
-    private int animationFrame;
-
     // Is this enemy stuck walking on the ground?
     [SerializeField]
     private bool isGrounded = true;
@@ -67,6 +61,9 @@ public class SimpleWalkingEnemy : Enemy
             FindObjectOfType<GameManager>().RemoveMoveableObject(gameObject);
             Destroy(gameObject);
         }
+
+        //Added for animation
+        base.ApplyTime(enemyDirectionVector);
     }
 
     // Returns if the enemy is on a ledge.
