@@ -248,4 +248,22 @@ public class Player : MonoBehaviour
             jumped = false;
         }
     }
+    
+    //focus on the player
+    private void OnMouseDown()
+    {
+        //unfocus interactables
+        GameObject[] all = FindObjectsOfType<GameObject>();
+        foreach (GameObject go in all)
+        {
+            if (go.GetComponent<Interactable>() != null)
+            {
+                go.GetComponent<Interactable>().isFocused = false;
+            }
+        }
+
+        //set player's focused object to null
+        FocusedObject = null;
+        
+    }
 }
