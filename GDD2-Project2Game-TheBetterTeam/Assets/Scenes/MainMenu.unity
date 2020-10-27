@@ -279,6 +279,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1378305561407336475, guid: a8ee661b3257abf429307151e14ddb40, type: 3}
+      propertyPath: shardsPerLevel.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1875066400909696297, guid: a8ee661b3257abf429307151e14ddb40, type: 3}
       propertyPath: m_Name
       value: GameManager
