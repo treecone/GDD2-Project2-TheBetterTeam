@@ -199,16 +199,19 @@ public class Player : MonoBehaviour
                 // Collide with enemy
                 if (colliderResult.GetComponent<Enemy>() != null)
                 {
+                    Debug.Log("Overlap with enemy");
                     return true;
                 }
                 // Collide with phase block
                 else if (colliderResult.GetComponent<PhaseBlock>())
                 {
+                    Debug.Log("Overlap with phase block");
                     return colliderResult.GetComponent<PhaseBlock>().isSolid;
                 }
                 // Collide with interactable block
                 else if (colliderResult.GetComponent<Interactable>())
                 {
+                    Debug.Log("Overlap with interactable");
                     return colliderResult.GetComponent<Interactable>().isSolid;
                 }
             }

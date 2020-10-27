@@ -57,8 +57,6 @@ public abstract class Enemy : MoveableObject
         }
         if (animationFrame >= walkingAnimations.Length)
             animationFrame = 0;
-        Debug.Log("!@#");
-
 
         base.ApplyTime(direction);
 
