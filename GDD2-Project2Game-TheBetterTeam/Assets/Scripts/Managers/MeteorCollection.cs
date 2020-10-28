@@ -29,6 +29,10 @@ public class MeteorCollection : MonoBehaviour
             shards.Add(Instantiate(meteorPrefab, transform, canvas.transform));
             shards[i].GetComponent<RectTransform>().localPosition = new Vector3(-362 + i * 45, 127, 0);
         }
+        if(transform.Find("LevelFadeIn") != null)
+        {
+            transform.Find("LevelFadeIn").SetAsLastSibling();
+        }
     }
 
     public void CollectShard()
